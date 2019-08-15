@@ -1,0 +1,54 @@
+WAF_APP_PORT=3000
+WAF_APP_HOST=0.0.0.0
+
+DATABASE_USER=postgres
+DATABASE_PASSWORD=postgres
+DATABASE_DB=postgres
+DATABASE_PORT=5432
+DATABASE_HOST=postgres-server
+
+OS_AUTH_URL=http://10.250.13.69:5000/v3
+OS_USERNAME=admin
+OS_PASSWORD=4KR8trkTFQxJv4R2VuVPgrBUb
+OS_TENANT_ID=610be7617fff469c88b71301cffd4c06
+OS_FLOATINGIP_NETWORK_ID=a33f84be-e058-482b-9efd-5cef248a6ca4
+# Required if identity version is v3
+OS_DOMAIN_NAME=Default
+
+# Optional
+OS_REGION_NAME=regionOne
+OS_INTERFACE=public
+
+# Possible useful variable.
+#OS_AVAILABLE_ZONE=nova
+
+# OnBoarding Parameters
+DO_ENDPOINT=https://do-server:443
+DO_BIGIQ_HOST=10.250.11.138
+DO_BIGIQ_USERNAME=admin
+DO_BIGIQ_PASSWORD=admin
+DO_BIGIQ_POOL=ZZC_testp
+DO_RPM_PACKAGE=/var/dependencies/f5-declarative-onboarding-1.5.0-11.noarch.rpm
+AS3_RPM_URL=file:///var/dependencies/f5-appsvcs-3.10.0-5.noarch.rpm
+
+# OnBoarding VE Parameters, for these two items, please use the common to seperate them.
+# for example, 8.8.8.8,7.7.7.7 openstack.local1,openstack.local2
+VE_DNS_SERVERS=8.8.8.8
+VE_DNS_SEARCH=openstack.local
+
+VE_NTP_SERVERS=0.pool.ntp.org,1.pool.ntp.org
+VE_NTP_TIMEZONE=UTC
+
+# There are four values for the ltm and asm provision levels 
+# 'dedicated' | 'nominal' | 'minimum' | 'none';
+VE_LTM_LEVEL=nominal
+VE_ASM_LEVEL=nominal
+
+
+
+ASG_HOST=asg-server
+ASG_PORT=443
+
+WAF_CERT_KEY=/var/data/certs/domain.key
+WAF_CERT_CRT=/var/data/certs/domain.crt
+WAF_ENABLE_HTTPS=false

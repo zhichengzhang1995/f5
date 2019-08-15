@@ -1,0 +1,294 @@
+{
+  "name": "openstack",
+  "connector": "rest-hdr",
+  "baseURL": "",
+  "crud": true,
+  "options": {
+    "accept": "application/json",
+    "content-type": "application/json"
+  },
+  "operations": [
+    {
+      "description": "identity v2 get auth token with user/password",
+      "template": {
+        "method": "POST",
+        "url": "{url}",
+        "responsePath": "$",
+        "body": "{body}"
+      },
+      "functions": {
+        "v2AuthToken": [
+          "url",
+          "body"
+        ]
+      }
+    },
+    {
+      "description": "identity v2 validate user's token.",
+      "template": {
+        "method": "GET",
+        "url": "{url}",
+        "headers": {
+          "X-Auth-Token": "{adminToken}"
+        },
+        "responsePath": "$"
+      },
+      "functions": {
+        "v2ValidateToken": [
+          "url",
+          "adminToken"
+        ]
+      }
+    },
+    {
+      "description": "identity v3 get auth token with user/password",
+      "template": {
+        "method": "POST",
+        "url": "{url}",
+        "responsePath": "$",
+        "body": "{body}",
+        "responseHeaders": true
+      },
+      "functions": {
+        "v3AuthToken": [
+          "url",
+          "body"
+        ]
+      }
+    },
+    {
+      "description": "identity v3 validate user's token.",
+      "template": {
+        "method": "GET",
+        "headers": {
+          "X-Auth-Token": "{adminToken}",
+          "X-Subject-Token": "{userToken}"
+        },
+        "url": "{url}",
+        "responsePath": "$",
+        "responseHeaders": true
+      },
+      "functions": {
+        "v3ValidateToken": [
+          "url",
+          "adminToken",
+          "userToken"
+        ]
+      }
+    },
+    {
+      "description": "call compute to create virtual server.",
+      "template": {
+        "method": "POST",
+        "headers": {
+          "X-Auth-Token": "{userToken}",
+          "content-type": "application/json"
+        },
+        "url": "{url}",
+        "body": "{body}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "v2CreateServer": [
+          "url",
+          "userToken",
+          "body"
+        ]
+      }
+    },
+    {
+      "description": "call compute to delete the virtual server.",
+      "template": {
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-Token": "{userToken}",
+          "content-type": "application/json"
+        },
+        "url": "{url}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "v2DeleteServer": [
+          "url",
+          "userToken"
+        ]
+      }
+    },
+    {
+      "description": "get detail of a created virtual server.",
+      "template": {
+        "method": "GET",
+        "headers": {
+          "X-Auth-Token": "{userToken}",
+          "content-type": "application/json"
+        },
+        "url": "{url}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "v2VirtualServerDetail": [
+          "url",
+          "userToken"
+        ]
+      }
+    },
+    {
+      "description": "create a port within the specific network.",
+      "template": {
+        "method": "POST",
+        "headers": {
+          "X-Auth-Token": "{userToken}",
+          "content-type": "application/json"
+        },
+        "url": "{url}",
+        "body": "{body}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "v2CreatePort": [
+          "url",
+          "userToken",
+          "body"
+        ]
+      }
+    },
+    {
+      "description": "update a port within the specific network.",
+      "template": {
+        "method": "PUT",
+        "headers": {
+          "X-Auth-Token": "{userToken}",
+          "content-type": "application/json"
+        },
+        "url": "{url}",
+        "body": "{body}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "v2UpdatePort": [
+          "url",
+          "userToken",
+          "body"
+        ]
+      }
+    },
+    {
+      "description": "delete the port.",
+      "template": {
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-Token": "{userToken}",
+          "content-type": "application/json"
+        },
+        "url": "{url}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "v2DeletePort": [
+          "url",
+          "userToken"
+        ]
+      }
+    },
+    {
+      "description": "get a specific network's subnets.",
+      "template": {
+        "method": "GET",
+        "headers": {
+          "X-Auth-Token": "{userToken}",
+          "content-type": "application/json"
+        },
+        "url": "{url}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "v2GetSubnets": [
+          "url",
+          "userToken"
+        ]
+      }
+    },
+    {
+      "description": "get a specific network's ports or get info of a port.",
+      "template": {
+        "method": "GET",
+        "headers": {
+          "X-Auth-Token": "{userToken}",
+          "content-type": "application/json"
+        },
+        "url": "{url}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "v2GetPorts": [
+          "url",
+          "userToken"
+        ]
+      }
+    },
+    {
+      "description": "common GET datasource",
+      "template": {
+        "method": "GET",
+        "headers": "{headers}",
+        "url": "{url}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "getInfo": [
+          "url",
+          "headers"
+        ]
+      }
+    },
+    {
+      "description": "common PUT datasource",
+      "template": {
+        "method": "PUT",
+        "headers": "{headers}",
+        "url": "{url}",
+        "body": "{body}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "putInfo": [
+          "url",
+          "headers",
+          "body"
+        ]
+      }
+    },
+    {
+      "description": "common POST datasource",
+      "template": {
+        "method": "POST",
+        "headers": "{headers}",
+        "url": "{url}",
+        "body": "{body}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "postInfo": [
+          "url",
+          "headers",
+          "body"
+        ]
+      }
+    },
+    {
+      "description": "common DELETE datasource",
+      "template": {
+        "method": "DELETE",
+        "headers": "{headers}",
+        "url": "{url}",
+        "responsePath": "$"
+      },
+      "functions": {
+        "deleteInfo": [
+          "url",
+          "headers"
+        ]
+      }
+    }
+  ]
+}

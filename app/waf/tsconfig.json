@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "outDir": "./dist",
+    "sourceMap": true
+  },
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "extends": "./node_modules/@loopback/build/config/tsconfig.common.json",
+  "include": [
+    "src",
+    "test",
+    "index.ts"
+  ],
+  "exclude": [
+    "node_modules/**",
+    "packages/*/node_modules/**",
+    "**/*.d.ts"
+  ]
+}
